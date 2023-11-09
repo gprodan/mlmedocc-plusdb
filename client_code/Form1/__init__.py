@@ -23,5 +23,5 @@ class Form1(Form1Template):
     """This method is called when a new file is loaded into this FileLoader"""
     result = anvil.server.call('classify_image', file)
     print("resp: {}".format(result))
-    self.rich_text_1.text = "{}".format(result)
+    self.label_2.text = "{}".format(result)
     self.image_1.source = file

@@ -22,10 +22,10 @@ components:
       properties: {height: 385}
       type: Image
       layout_properties: {grid_position: 'KGKUQD,RBNDQL'}
-    - name: rich_text_1
+    - name: label_2
       properties: {}
-      type: RichText
-      layout_properties: {grid_position: 'KGKUQD,HFNXNI'}
+      type: Label
+      layout_properties: {grid_position: 'KGKUQD,RAMPQR'}
   - name: label_1
     properties: {text: 'Model:', role: null, align: center, tooltip: Select model}
     type: Label
