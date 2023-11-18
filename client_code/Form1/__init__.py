@@ -5,7 +5,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.users
-import json
+
 
 mlChestx_models = ['PSPNet', 'cx']
 class Form1(Form1Template):
@@ -25,7 +25,7 @@ class Form1(Form1Template):
     result = anvil.server.call('classify_image', file)
     print("resp: {}".format(result))
     self.label_2.text = "{}".format(result)
-    keysList = list(json.loads(result).keys())
+    keysList = list(eval(result).keys())
     item_list = ["{}: {}".format(name, result[name]) for name in keysList];
     self.repeating_panel_1.items = item_list;
     
