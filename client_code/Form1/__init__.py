@@ -25,7 +25,7 @@ class Form1(Form1Template):
     result = anvil.server.call('classify_image', file)
     print("resp: {}".format(result))
     self.label_2.text = "{}".format(result)
-    keysList = list(json.load(result).keys())
+    keysList = list(json.loads(result).keys())
     item_list = ["{}: {}".format(name, result[name]) for name in keysList];
     self.repeating_panel_1.items = item_list;
     
