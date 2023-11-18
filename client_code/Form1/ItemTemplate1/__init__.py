@@ -12,5 +12,5 @@ class ItemTemplate1(ItemTemplate1Template):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
-    self.vname.test = self.item['vname']
+    self.vname.text = self.item['vname']
     self.vvalue.text = self.item['vvalue']
