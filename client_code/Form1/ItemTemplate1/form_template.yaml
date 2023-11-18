@@ -11,3 +11,4 @@ components:
   properties: {}
   type: Label
   layout_properties: {grid_position: 'OLCMNX,WCTAQC'}
+data_bindings: []
