@@ -28,6 +28,7 @@ class Form1(Form1Template):
     keysList = list(eval(result).keys())
     print("keysList: {}".format(keysList))
     item_list = ["{}: {}".format(name, eval(result)[name]) for name in keysList]
+    print("itemList: {}".format(item_list))
     self.repeating_panel_1.items = item_list
     
     self.image_1.source = file
