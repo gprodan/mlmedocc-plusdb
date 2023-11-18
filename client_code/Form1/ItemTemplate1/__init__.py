@@ -13,7 +13,7 @@ class ItemTemplate1(ItemTemplate1Template):
     # Any code you write here will run before the form opens.
     self.vname.text = self.item['vname']
     self.vvalue.text = self.item['vvalue']
-    self.add_event_handler("select", self.select_item)
+    self.add_event_handler("x-select", self.select_item)
   def select_item(self):
     print("Item selected")
     paass
