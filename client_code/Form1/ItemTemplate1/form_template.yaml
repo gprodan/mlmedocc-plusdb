@@ -1,11 +1,11 @@
 is_package: true
 container: {type: ColumnPanel}
 components:
-- name: name
+- name: vname
   properties: {}
   type: Label
   layout_properties: {grid_position: 'OLCMNX,IYASDL'}
-- name: value
+- name: vvalue
   properties: {}
   type: Label
   layout_properties: {grid_position: 'OLCMNX,WCTAQC'}
