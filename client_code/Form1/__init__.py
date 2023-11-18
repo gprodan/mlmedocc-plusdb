@@ -24,4 +24,8 @@ class Form1(Form1Template):
     result = anvil.server.call('classify_image', file)
     print("resp: {}".format(result))
     self.label_2.text = "{}".format(result)
+    keysList = list(result.keys())
+    item_list = ["{}: {}".format(name, result[name]) for name in keysList];
+    self.repeating_panel_1.items = item_list;
+    
     self.image_1.source = file
