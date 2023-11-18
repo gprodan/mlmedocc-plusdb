@@ -28,7 +28,7 @@ a>.anvil-component-icon.right_edge-icon,
   padding-top: 8px;
   padding-bottom: 8px;
 }
-.anvil-label:hover{
+.column-panel:hover{
   background-color: yellow;
 }
 .anvil-label>.label-text, a>.link-text {
