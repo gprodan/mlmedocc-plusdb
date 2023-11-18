@@ -27,7 +27,7 @@ class Form1(Form1Template):
     self.label_2.text = "{}".format(result)
     keysList = list(eval(result).keys())
     print("keysList: {}".format(keysList))
-    item_list = ["{}: {}".format(name, eval(result)[name]) for name in keysList]
+    item_list = [{name, eval(result)[name]} for name in keysList]
     print("itemList: {}".format(item_list))
     self.repeating_panel_1.items = item_list
     
