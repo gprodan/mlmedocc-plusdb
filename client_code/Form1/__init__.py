@@ -13,7 +13,8 @@ mlChestx_models = ['densenet121-res224-all',
                   'densenet121-res224-pc',
                   'densenet121-res224-chex',
                   'densenet121-res224-mimic_nb',
-                  'densenet121-res224-mimic_ch']
+                  'densenet121-res224-mimic_ch',
+                  'resnet50-res512-all']
 class Form1(Form1Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
