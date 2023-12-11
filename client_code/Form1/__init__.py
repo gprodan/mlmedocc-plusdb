@@ -7,7 +7,13 @@ from anvil.tables import app_tables
 import anvil.users
 
 
-mlChestx_models = ['PSPNet', 'cx']
+mlChestx_models = ['densenet121-res224-all', 
+                  'densenet121-res224-rsna',
+                  'densenet121-res224-nih',
+                  'densenet121-res224-pc',
+                  'densenet121-res224-chex',
+                  'densenet121-res224-mimic_nb',
+                  'densenet121-res224-mimic_ch']
 class Form1(Form1Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -22,9 +28,9 @@ class Form1(Form1Template):
 
   def file_loader_1_change(self, file, **event_args):
     """This method is called when a new file is loaded into this FileLoader"""
-    result = anvil.server.call('classify_image', file)
+    result = anvil.server.call('classify_image', file, model=self.lblModelIndex.text)
     print("resp: {}".format(result))
-    self.label_2.text = "{}".format(result)
+    self.label_2.text = "Results for model: {}".format(self.lblModelIndex.text)
     keysList = list(eval(result).keys())
     print("keysList: {}".format(keysList))
     item_list = [{'vname':name, 'vvalue':eval(result)[name]} for name in keysList]
