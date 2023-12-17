@@ -45,10 +45,21 @@ db_schema:
       admin_ui: {order: 7, width: 200}
       type: datetime
     title: Users
-  table_2:
+  models:
+    client: none
+    server: full
+    columns:
+    - name: description
+      admin_ui: {width: 200}
+      type: string
+    - name: name
+      admin_ui: {width: 200}
+      type: string
+    title: Models
+  media:
     client: none
     server: full
     columns: []
-    title: Table 2
+    title: Media
 uplink_visible: true
 renamed: true

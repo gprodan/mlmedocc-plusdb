@@ -17,3 +17,10 @@ import anvil.server
 #   print("Hello, " + name + "!")
 #   return 42
 #
+@anvil.server.callable
+def get_models():
+  return app_tables.models.search()
+
+@anvil.server.callable
+def get_model(name):
+  return app_tables.models.search(name=name)
