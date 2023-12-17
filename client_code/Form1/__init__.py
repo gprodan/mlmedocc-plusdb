@@ -31,7 +31,7 @@ class Form1(Form1Template):
     """This method is called when a new file is loaded into this FileLoader"""
     result = anvil.server.call('classify_image', file, model=self.lblModelIndex.text)
     print("resp: {}".format(result))
-    self.label_2.text = "Results for model: {}".format(self.lblModelIndex.text)
+    
     keysList = list(eval(result).keys())
     print("keysList: {}".format(keysList))
     item_list = [{'vname':name, 'vvalue':eval(result)[name]} for name in keysList]
