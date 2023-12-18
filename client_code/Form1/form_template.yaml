@@ -46,3 +46,23 @@ components:
   properties: {}
   name: navbar_links
   layout_properties: {slot: nav-right}
+- name: column_panel_1
+  properties: {}
+  type: ColumnPanel
+  layout_properties: {slot: left-nav}
+  components:
+  - name: segmentationBtn
+    properties: {text: 'Segmentation
+
+        '}
+    type: Button
+    layout_properties: {grid_position: 'VRONYG,MJNIGJ'}
+    event_bindings: {click: segmentationBtn_click}
+  - name: heatmapBtn
+    properties: {text: 'Heatmap '}
+    type: Button
+    layout_properties: {grid_position: 'QJDPSS,PMTXIX'}
+- name: label_2
+  properties: {text: Test model analiza radiografie}
+  type: Label
+  layout_properties: {slot: title}

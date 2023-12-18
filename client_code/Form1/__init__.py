@@ -30,7 +30,7 @@ class Form1(Form1Template):
 
   def file_loader_1_change(self, file, **event_args):
     """This method is called when a new file is loaded into this FileLoader"""
-    self.file = fil
+    self.file = file
     result = anvil.server.call('classify_image', file, model=self.lblModelIndex.text)
     print("resp: {}".format(result))
     app_tables.media.add_row(filename=file.name,original=file,result=result)
@@ -42,3 +42,7 @@ class Form1(Form1Template):
     self.repeating_panel_1.items = item_list
     
     self.image_1.source = file
+
+  def segmentationBtn_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    anvil.server.call
