@@ -20,6 +20,7 @@ class Form1(Form1Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.ddModel.items = mlChestx_models
+    self.lblModelIndex.text = 'densenet121-res224-all'
     self.file = None
 
     # Any code you write here will run before the form opens.
