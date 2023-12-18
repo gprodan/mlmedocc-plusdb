@@ -34,7 +34,7 @@ class Form1(Form1Template):
     self.file = file
     result = anvil.server.call('classify_image', file, modelname=self.lblModelIndex.text)
     print("resp: {}".format(result))
-    app_tables.media.add_row(filename=file.name,original=file,result=result)
+    #app_tables.images.add_row(filename=file.name,original=file,result=result)
     
     keysList = list(eval(result).keys())
     print("keysList: {}".format(keysList))
@@ -55,4 +55,4 @@ class Form1(Form1Template):
 
   def saveBtn_click(self, **event_args):
     """This method is called when the button is clicked"""
-    app_tables.media.add_row(filename=file.name,original=file,result=result)
+    app_tables.images.add_row(filename=file.name,original=file,result=result)
