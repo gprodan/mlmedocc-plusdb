@@ -2,7 +2,7 @@ from ._anvil_designer import Form1Template
 from anvil import *
 import anvil.server
 import anvil.tables as tables
-import anvil.tables.query as q
+import anvil.tables.query as 
 from anvil.tables import app_tables
 import anvil.users
 

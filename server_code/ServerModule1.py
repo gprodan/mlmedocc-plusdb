@@ -24,3 +24,14 @@ def get_models():
 @anvil.server.callable
 def get_model(name):
   return app_tables.models.search(name=name)
+
+@anvil.server.callable
+def getSegmentation(file):
+  segm = file
+  return segm
+
+@anvil.server.callable
+def getHeatmap(file):
+  hm = file
+  return hm
+  
