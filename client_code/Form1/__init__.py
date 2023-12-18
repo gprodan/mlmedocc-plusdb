@@ -51,3 +51,7 @@ class Form1(Form1Template):
       
     else:
       alert('Upload image!')
+
+  def saveBtn_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    app_tables.media.add_row(filename=file.name,original=file,result=result)
