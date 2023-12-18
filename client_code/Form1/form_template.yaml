@@ -39,7 +39,7 @@ components:
     data_bindings: []
     event_bindings: {change: ddModel_change}
   - name: lblModelIndex
-    properties: {}
+    properties: {text: densenet121-res224-all}
     type: Label
     layout_properties: {grid_position: 'UPIXUK,PYUCQD'}
 - type: FlowPanel
