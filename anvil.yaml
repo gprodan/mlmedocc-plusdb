@@ -45,5 +45,36 @@ db_schema:
       admin_ui: {order: 7, width: 200}
       type: datetime
     title: Users
+  models:
+    client: search
+    server: full
+    columns:
+    - name: description
+      admin_ui: {width: 200}
+      type: string
+    - name: name
+      admin_ui: {width: 200}
+      type: string
+    title: Models
+  media:
+    client: full
+    server: full
+    columns:
+    - name: filename
+      admin_ui: {width: 200, order: 0}
+      type: string
+    - name: original
+      admin_ui: {width: 200, order: 1}
+      type: media
+    - name: overlay1
+      admin_ui: {width: 200, order: 2}
+      type: media
+    - name: overlay2
+      admin_ui: {width: 200, order: 3}
+      type: media
+    - name: result
+      admin_ui: {order: 0.5, width: 200}
+      type: string
+    title: Media
 uplink_visible: true
 renamed: true
