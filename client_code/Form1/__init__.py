@@ -45,4 +45,9 @@ class Form1(Form1Template):
 
   def segmentationBtn_click(self, **event_args):
     """This method is called when the button is clicked"""
-    anvil.server.call
+    if self.file is not None:
+      f = self.file
+      res = anvil.server.call('getHeatmap', f)
+      
+    else:
+      alert('Upload image!')
