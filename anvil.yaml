@@ -46,7 +46,7 @@ db_schema:
       type: datetime
     title: Users
   models:
-    client: none
+    client: search
     server: full
     columns:
     - name: description
@@ -57,7 +57,7 @@ db_schema:
       type: string
     title: Models
   media:
-    client: none
+    client: full
     server: full
     columns:
     - name: filename

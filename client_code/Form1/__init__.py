@@ -31,7 +31,7 @@ class Form1(Form1Template):
   def file_loader_1_change(self, file, **event_args):
     """This method is called when a new file is loaded into this FileLoader"""
     self.file = file
-    result = anvil.server.call('classify_image', file, model=self.lblModelIndex.text)
+    result = anvil.server.call('classify_image', file, modelname=self.lblModelIndex.text)
     print("resp: {}".format(result))
     app_tables.media.add_row(filename=file.name,original=file,result=result)
     
