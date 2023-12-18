@@ -59,7 +59,22 @@ db_schema:
   media:
     client: none
     server: full
-    columns: []
+    columns:
+    - name: filename
+      admin_ui: {width: 200, order: 0}
+      type: string
+    - name: original
+      admin_ui: {width: 200, order: 1}
+      type: media
+    - name: overlay1
+      admin_ui: {width: 200, order: 2}
+      type: media
+    - name: overlay2
+      admin_ui: {width: 200, order: 3}
+      type: media
+    - name: result
+      admin_ui: {order: 0.5, width: 200}
+      type: string
     title: Media
 uplink_visible: true
 renamed: true

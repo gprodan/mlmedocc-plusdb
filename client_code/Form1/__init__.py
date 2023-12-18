@@ -20,6 +20,7 @@ class Form1(Form1Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.ddModel.items = mlChestx_models
+    self.file = None
 
     # Any code you write here will run before the form opens.
 
@@ -29,8 +30,10 @@ class Form1(Form1Template):
 
   def file_loader_1_change(self, file, **event_args):
     """This method is called when a new file is loaded into this FileLoader"""
+    self.file = fil
     result = anvil.server.call('classify_image', file, model=self.lblModelIndex.text)
     print("resp: {}".format(result))
+    app_tables.media.add_row(filename=file.name,original=file,result=result)
     
     keysList = list(eval(result).keys())
     print("keysList: {}".format(keysList))
