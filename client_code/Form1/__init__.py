@@ -20,6 +20,7 @@ class Form1(Form1Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.ddModel.items = mlChestx_models
+    self.lblModelIndex.text = 'densenet121-res224-all'
     self.file = None
 
     # Any code you write here will run before the form opens.
@@ -33,7 +34,7 @@ class Form1(Form1Template):
     self.file = file
     result = anvil.server.call('classify_image', file, modelname=self.lblModelIndex.text)
     print("resp: {}".format(result))
-    app_tables.media.add_row(filename=file.name,original=file,result=result)
+    #app_tables.images.add_row(filename=file.name,original=file,result=result)
     
     keysList = list(eval(result).keys())
     print("keysList: {}".format(keysList))
@@ -51,3 +52,7 @@ class Form1(Form1Template):
       
     else:
       alert('Upload image!')
+
+  def saveBtn_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    app_tables.images.add_row(filename=file.name,original=file,result=result)

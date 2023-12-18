@@ -39,7 +39,7 @@ components:
     data_bindings: []
     event_bindings: {change: ddModel_change}
   - name: lblModelIndex
-    properties: {}
+    properties: {text: densenet121-res224-all}
     type: Label
     layout_properties: {grid_position: 'UPIXUK,PYUCQD'}
 - type: FlowPanel
@@ -62,6 +62,15 @@ components:
     properties: {text: 'Heatmap '}
     type: Button
     layout_properties: {grid_position: 'QJDPSS,PMTXIX'}
+  - name: spacer_1
+    properties: {height: 32}
+    type: Spacer
+    layout_properties: {grid_position: 'ATSJGC,BFHIJW'}
+  - name: saveBtn
+    properties: {text: Save Test, role: outlined-button}
+    type: Button
+    layout_properties: {grid_position: 'TIZJEQ,GPVTRI'}
+    event_bindings: {click: saveBtn_click}
 - name: label_2
   properties: {text: Test model analiza radiografie}
   type: Label
