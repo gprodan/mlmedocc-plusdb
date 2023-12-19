@@ -46,7 +46,7 @@ db_schema:
       type: datetime
     title: Users
   models:
-    client: search
+    client: full
     server: full
     columns:
     - name: description
