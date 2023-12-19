@@ -15,4 +15,6 @@ class Form2(Form2Template):
 
   def ddModel_change(self, **event_args):
     """This method is called when an item is selected"""
-    anvil.server.call("get_model")
+    res = anvil.server.call("get_model")
+    self.modelDescr.text = res['description']
+    

@@ -22,7 +22,7 @@ def get_models():
 
 @anvil.server.callable
 def get_model(name):
-  return app_tables.models.search(name=name)
+  return app_tables.models.get(name=name)
 
 @anvil.server.callable
 def classify_image(file, modelname):
