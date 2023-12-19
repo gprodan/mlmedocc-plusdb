@@ -16,5 +16,5 @@ class ItemTemplate1(ItemTemplate1Template):
     self.add_event_handler("x-select", self.select_item)
   def select_item(self):
     print("Item selected")
-    paass
+    pass
     
