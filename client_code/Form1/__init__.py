@@ -45,7 +45,7 @@ class Form1(Form1Template):
     print("itemList: {}".format(item_list))
     self.repeating_panel_1.items = item_list
     
-    self.image_1.source = file
+    self.image_1.source = self.file
 
   def segmentationBtn_click(self, **event_args):
     """This method is called when the button is clicked"""
