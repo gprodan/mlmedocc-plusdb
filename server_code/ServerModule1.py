@@ -77,11 +77,11 @@ def getHeatmap(file, modelname, patologie):
 def save_report(file, utilizator, modelname, result):
     print(f'Utilizator: {utilizator}; Model: {modelname}')
     doc = Document()
-    doc.add_heading('Raport analiză {file.name}', 0)
+    doc.add_heading(f'Raport analiză {file.name}', 0)
     doc.add_paragraph('Configurație:')
-    doc.add_paragraph('Utilizator:{utilizator}', style='List Number')
-    doc.add_paragraph('Data:{datetime.now()}', style='List Number')
-    doc.add_paragraph('Model:{modelname}', style='List Number')
+    doc.add_paragraph(f'Utilizator:{utilizator}', style='List Number')
+    doc.add_paragraph(f'Data:{datetime.now()}', style='List Number')
+    doc.add_paragraph(f'Model:{modelname}', style='List Number')
     with anvil.media.TempFile(file) as filename:
       doc.add_picture(filename, width=Inches(3))
     doc.add_paragraph('Figura 1: Imaginea originală')
