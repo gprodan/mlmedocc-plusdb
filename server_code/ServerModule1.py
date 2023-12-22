@@ -68,7 +68,7 @@ def getHeatmap(file, modelname, patologie):
     return anvil.media.TempFile(ax)
 
 @anvil.server.callable
-def save_report(self, file, utilizator, modelname, result):
+def save_report(file, utilizator, modelname, result):
     doc = Document()
     doc.add_heading('Raport analiză {file.name}', 0)
     doc.add_paragraph('Configurație:')
