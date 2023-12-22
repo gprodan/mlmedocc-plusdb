@@ -76,7 +76,7 @@ def save_report(file, utilizator, modelname, result):
     doc.add_paragraph('Data:{datetime.now()}', style='List Number')
     doc.add_paragraph('Model:{modelname}', style='List Number')
 
-    doc.add_picture(file, width=Inches(3))
+    doc.add_picture(anvil.media.TempFile(file), width=Inches(3))
     doc.add_paragraph('Figura 1: Imaginea originală')
     item_list = [{'vname':name, 'vvalue':eval(result)[name]} for name in keysList]
     for item in item_list:
