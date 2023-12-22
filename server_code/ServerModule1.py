@@ -48,8 +48,19 @@ def getHeatmap(filename, modelname, patologie):
     transform = torchvision.transforms.Compose([xrv.datasets.XRayCenterCrop(),xrv.datasets.XRayResizer(224)])
     img = transform(img)
     img = torch.from_numpy(img)
-    model = xrv.models.DenseNet(weights=modelname)
+    model = xrv.models.get_model(modelname)
     target = model.pathologies.index(patologie)
-    outputs = model(img[None,...]) # or model.features(img[None,...]) 
-    return str(dict(zip(model.pathologies,outputs[0].detach().numpy())))
+    img = img.requires_grad_()
+    grads = torch.autograd.grad(outputs[:,target], img)[0][0][0]
+    blurred = skimage.filters.gaussian(grads.detach().cpu().numpy()**2, sigma=(5, 5), truncate=3.5)
+    outputs = model(img) # or model.features(img[None,...]) 
+    my_dpi = 100
+    fig = plt.figure(frameon=False, figsize=(224/my_dpi, 224/my_dpi), dpi=my_dpi)
+    ax = plt.Axes(fig, [0., 0., 1., 1.])
+    ax.set_axis_off()
+    fig.add_axes(ax)
+    ax.imshow(img[0][0].detach().cpu().numpy(), cmap="gray", aspect='auto')
+    ax.imshow(blurred, alpha=0.5)
+    
+    return anvil.media.TempFile(ax)
   
