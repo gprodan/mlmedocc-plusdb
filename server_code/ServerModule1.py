@@ -85,7 +85,7 @@ def save_report(file, utilizator, modelname, result):
       doc.add_paragraph(f"{item['vname']}: {item['vvalue']}', style='List Number'")
       if item['vvalue'] > 0.5:
         print(f"HM Model:{item['vname']} ({item['vvalue']})")
-        if getHeatmap(file=file, modelname=item['vname'], patologie=item['vname']):
+        if getHeatmap(file=file, modelname=modelname, patologie=item['vname']):
           doc.add_picture('temp.png', width=Inches(3))
     doc.save(f'{utilizator}_{modelname}_{file.name}.docx')
   
