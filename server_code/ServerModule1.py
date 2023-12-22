@@ -64,8 +64,8 @@ def getHeatmap(file, modelname, patologie):
     fig.add_axes(ax)
     ax.imshow(img[0][0].detach().cpu().numpy(), cmap="gray", aspect='auto')
     ax.imshow(blurred, alpha=0.5)
-    
-    return ax
+    ax.savefig('temp.png')
+    return True
 
 @anvil.server.callable
 def save_report(file, utilizator, modelname, result):
@@ -82,7 +82,7 @@ def save_report(file, utilizator, modelname, result):
     for item in item_list:
       doc.add_paragraph(f"{item['vname']}: {item['vvalue']}', style='List Number'")
       if item['vvalue'] > 0.5:
-        res = getHeatmap(file=file, model=item['vname'], patologie=item['vname'])
-        doc.add_picture(res, width=Inches(3))
+        if getHeatmap(file=file, model=item['vname'], patologie=item['vname']):
+          doc.add_picture('temp.png', width=Inches(3))
     doc.save(f'{utilizator}_{modelname}_{file.name}.docx')
   
