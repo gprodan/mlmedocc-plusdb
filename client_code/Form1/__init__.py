@@ -5,6 +5,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.users
+import anvil.media
 
 
 
@@ -58,7 +59,7 @@ class Form1(Form1Template):
   def saveReport_click(self, **event_args):
     """This method is called when the button is clicked"""
     doc = anvil.server.call('save_report', file=self.file, utilizator=self.utilizator.text, modelname=self.lblModelIndex.text, result=self.result)
-    doc.download()
+    anvil.media.download(doc)
       
 
      
