@@ -59,7 +59,7 @@ def getHeatmap(file, modelname, patologie):
     model = xrv.models.DenseNet(weights=modelname)
     target = model.pathologies.index(patologie)
     img = img.requires_grad_()
-    outputs = model(img[None,...]) # or model.features(img[None,...]) 
+    outputs = model(img) # or model.features(img[None,...]) 
     grads = torch.autograd.grad(outputs[:,target], img)[0][0][0]
     blurred = skimage.filters.gaussian(grads.detach().cpu().numpy()**2, sigma=(5, 5), truncate=3.5)
 
