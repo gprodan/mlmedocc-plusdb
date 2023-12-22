@@ -6,6 +6,9 @@ import anvil.server
 import anvil.media
 #import torchxrayvision as xrv
 #import skimage, torch, torchvision
+from docx import Document
+from docx.shared import Inches
+import datetime
 
 # To allow anvil.server.call() to call functions here, we mark
 # them with @anvil.server.callable.
@@ -63,4 +66,23 @@ def getHeatmap(file, modelname, patologie):
     ax.imshow(blurred, alpha=0.5)
     
     return anvil.media.TempFile(ax)
+
+@anvil.server.callable
+def save_report(self, file, utilizator, modelname, result):
+    doc = Document()
+    doc.add_heading('Raport analiză {file.name}', 0)
+    doc.add_paragraph('Configurație:')
+    doc.add_paragraph('Utilizator:{utilizator}', style='List Number')
+    doc.add_paragraph('Data:{datetime.now()}', style='List Number')
+    doc.add_paragraph('Model:{modelname}', style='List Number')
+
+    doc.add_picture(anvil.media.TempFile(file), width=Inches(3))
+    doc.add_paragraph('Figura 1: Imaginea originală')
+    item_list = [{'vname':name, 'vvalue':eval(result)[name]} for name in keysList]
+    for item in item_list:
+      doc.add_paragraph(f"{item['vname']}: {item['vvalue']}', style='List Number'")
+      if item['vvalue'] > 0.5:
+        res = anvil.server.call('getHeatmap', file=file, model=item['vname'], patologie=item['vname'])
+        doc.add_picture(res, width=Inches(3))
+    doc.save(f'{utilizator}_{modelname}_{file.name}.docx')
   
