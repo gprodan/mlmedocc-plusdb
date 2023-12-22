@@ -60,7 +60,7 @@ components:
   layout_properties: {slot: left-nav}
   components:
   - name: heatmapBtn
-    properties: {text: 'Heatmap '}
+    properties: {text: 'Heatmap ', enabled: false}
     type: Button
     layout_properties: {grid_position: 'QJDPSS,PMTXIX'}
     event_bindings: {click: heatmapBtn_click}
