@@ -39,7 +39,7 @@ def classify_image(file, modelname):
     return str(dict(zip(model.pathologies,outputs[0].detach().numpy())))
 
 @anvil.server.callable
-def getHeatmap(filename, modelname, patologie):
+def getHeatmap(file, modelname, patologie):
   with anvil.media.TempFile(file) as filename:
     #img = load_img(filename)
     img = skimage.io.imread(filename)
