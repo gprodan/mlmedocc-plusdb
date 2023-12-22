@@ -97,4 +97,5 @@ def save_report(file, utilizator, modelname, result):
         if getHeatmap(file=file, modelname=modelname, patologie=item['vname']):
           doc.add_picture('temp.png', width=Inches(3))
     doc.save(f'{utilizator}_{modelname}_{file.name}.docx')
+    return f'{utilizator}_{modelname}_{file.name}.docx'
   
