@@ -85,13 +85,13 @@ def save_report(file, utilizator, modelname, result):
     doc.add_paragraph(f'Utilizator:{utilizator}', style='List Number')
     doc.add_paragraph(f'Data:{datetime.datetime.now()}', style='List Number')
     doc.add_paragraph(f'Model:{modelname}', style='List Number')
-    with anvil.media.TempFile(file) as filename:
-      doc.add_picture(filename, width=Inches(3))
+    anvil.media.write_to_file(file,'orig.png')
+    doc.add_picture('orig.png', width=Inches(3))
     doc.add_paragraph('Figura 1: Imaginea originală')
     keysList = list(eval(result).keys())
     item_list = [{'vname':name, 'vvalue':eval(result)[name]} for name in keysList]
     for item in item_list:
-      doc.add_paragraph(f"{item['vname']}: {item['vvalue']}', style='List Number'")
+      doc.add_paragraph(f"{item['vname']}: {item['vvalue']}'", style='List Number')
       if item['vvalue'] > 0.5:
         print(f"HM Model:{item['vname']} ({item['vvalue']})")
         if getHeatmap(file=file, modelname=modelname, patologie=item['vname']):
