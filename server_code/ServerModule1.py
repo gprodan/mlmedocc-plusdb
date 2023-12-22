@@ -4,8 +4,8 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
 import anvil.media
-#import torchxrayvision as xrv
-#import skimage, torch, torchvision
+import torchxrayvision as xrv
+import skimage, torch, torchvision
 from docx import Document
 from docx.shared import Inches
 import datetime
