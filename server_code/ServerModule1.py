@@ -78,6 +78,7 @@ def save_report(file, utilizator, modelname, result):
     with anvil.media.TempFile(file) as filename:
       doc.add_picture(filename, width=Inches(3))
     doc.add_paragraph('Figura 1: Imaginea originală')
+    keysList = list(eval(result).keys())
     item_list = [{'vname':name, 'vvalue':eval(result)[name]} for name in keysList]
     for item in item_list:
       doc.add_paragraph(f"{item['vname']}: {item['vvalue']}', style='List Number'")
