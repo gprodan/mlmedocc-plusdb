@@ -80,7 +80,7 @@ def save_report(file, utilizator, modelname, result):
     doc.add_heading(f'Raport analiză {file.name}', 0)
     doc.add_paragraph('Configurație:')
     doc.add_paragraph(f'Utilizator:{utilizator}', style='List Number')
-    doc.add_paragraph(f'Data:{datetime.now()}', style='List Number')
+    doc.add_paragraph(f'Data:{datetime.datetime.now()}', style='List Number')
     doc.add_paragraph(f'Model:{modelname}', style='List Number')
     with anvil.media.TempFile(file) as filename:
       doc.add_picture(filename, width=Inches(3))
