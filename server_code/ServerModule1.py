@@ -4,11 +4,14 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
 import anvil.media
+
+import torch, torchvision
 import torchxrayvision as xrv
-import skimage, torch, torchvision
+import skimage, skimage.io
 from docx import Document
 from docx.shared import Inches
 import datetime
+import matplotlib.pyplot as plt
 
 # To allow anvil.server.call() to call functions here, we mark
 # them with @anvil.server.callable.
