@@ -73,7 +73,7 @@ def getHeatmap(file, modelname, patologie):
     fig.add_axes(ax)
     ax.imshow(img[0][0].detach().cpu().numpy(), cmap="gray", aspect='auto')
     ax.imshow(blurred, alpha=0.5)
-    ax.savefig('temp.png')
+    fig.savefig('temp.png')
     return True
 
 @anvil.server.callable
