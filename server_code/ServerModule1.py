@@ -55,7 +55,7 @@ def getHeatmap(file, modelname, patologie):
     img = img[None, :, :]
     transform = torchvision.transforms.Compose([xrv.datasets.XRayCenterCrop(),xrv.datasets.XRayResizer(224)])
     img = transform(img)
-    img = torch.from_numpy(img)
+    img = torch.from_numpy(img).unsqueeze(0)
     model = xrv.models.DenseNet(weights=modelname)
     target = model.pathologies.index(patologie)
     img = img.requires_grad_()
