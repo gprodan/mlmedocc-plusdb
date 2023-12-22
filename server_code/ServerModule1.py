@@ -39,12 +39,17 @@ def classify_image(file, modelname):
     return str(dict(zip(model.pathologies,outputs[0].detach().numpy())))
 
 @anvil.server.callable
-def getSegmentation(file):
-  segm = file
-  return segm
-
-@anvil.server.callable
-def getHeatmap(file):
-  hm = file
-  return hm
+def getHeatmap(filename, modelname, patologie):
+  with anvil.media.TempFile(file) as filename:
+    #img = load_img(filename)
+    img = skimage.io.imread(filename)
+    img = xrv.datasets.normalize(img, 255) # convert 8-bit image to [-1024, 1024] range
+    img = img.mean(2)[None, ...] # Make single color channel
+    transform = torchvision.transforms.Compose([xrv.datasets.XRayCenterCrop(),xrv.datasets.XRayResizer(224)])
+    img = transform(img)
+    img = torch.from_numpy(img)
+    model = xrv.models.DenseNet(weights=modelname)
+    target = model.pathologies.index(patologie)
+    outputs = model(img[None,...]) # or model.features(img[None,...]) 
+    return str(dict(zip(model.pathologies,outputs[0].detach().numpy())))
   

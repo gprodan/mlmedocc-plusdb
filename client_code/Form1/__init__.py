@@ -5,6 +5,8 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.users
+import docx
+import datetime
 
 
 mlChestx_models = ['densenet121-res224-all', 
@@ -25,6 +27,7 @@ class Form1(Form1Template):
     self.result = None
     self.hm = None
     self.segm = None
+    self.pat = None
 
     # Any code you write here will run before the form opens.
 
@@ -46,16 +49,43 @@ class Form1(Form1Template):
     self.repeating_panel_1.items = item_list
     
     self.image_1.source = self.file
-
-  def segmentationBtn_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    if self.file is not None:
-      f = self.file
-      res = anvil.server.call('getHeatmap', f)
-      
-    else:
-      alert('Upload image!')
+    self.saveBtn.enabled = True
+    self.saveReport.enabled = True
 
   def saveBtn_click(self, **event_args):
     """This method is called when the button is clicked"""
     app_tables.images.add_row(filename=self.file.name,original=self.file,result=self.result)
+
+  def saveReport_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    doc = docx.Document()
+    doc.add_heading('Raport analiză {self.file.name}', 0)
+    doc.add_paragraph('Configurație:')
+    doc.add_paragraph('Utilizator:{self.utilizator}', style='List Number')
+    doc.add_paragraph('Data:{datetime.now()}', style='List Number')
+    doc.add_paragraph('Model:{self.lblModelIndex.text}', style='List Number')
+
+    doc.add_picture(anvil.media.TempFile(self.file), width=docx.shared.Inches(3))
+    doc.add_paragraph('Figura 1: Imaginea originală')
+    item_list = [{'vname':name, 'vvalue':eval(self.result)[name]} for name in keysList]
+    for item in item_list:
+      doc.add_paragraph(f"{item['vname']}: {item['vvalue']}', style='List Number'")
+      if item['vvalue'] > 0.5:
+        res = anvil.server.call('getHeatmap', file=self.file, model=item['vname'], patologie=item['vname'])
+        doc.add_picture(anvil.media.TempFile(res), width=docx.shared.Inches(3))
+    doc.save(f'{self.utilizator}_{self.lblModelIndex.text}_{self.file.name}.docx')
+    
+      
+
+     
+
+  def heatmapBtn_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    if self.file is not None:
+      f = self.file
+      res = anvil.server.call('getHeatmap', f, pat)
+      
+    else:
+      alert('Upload image!')
+    
+
