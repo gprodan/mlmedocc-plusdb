@@ -47,7 +47,12 @@ def getHeatmap(file, modelname, patologie):
     #img = load_img(filename)
     img = skimage.io.imread(filename)
     img = xrv.datasets.normalize(img, 255) # convert 8-bit image to [-1024, 1024] range
-    img = img.mean(2)[None, ...] # Make single color channel
+    #img = img.mean(2)[None, ...] # Make single color channel
+    if len(img.shape) > 2:
+      img = img[:, :, 0]
+    if len(img.shape) < 2:
+      print("error, dimension lower than 2 for image")
+    img = img[None, :, :]
     transform = torchvision.transforms.Compose([xrv.datasets.XRayCenterCrop(),xrv.datasets.XRayResizer(224)])
     img = transform(img)
     img = torch.from_numpy(img)
