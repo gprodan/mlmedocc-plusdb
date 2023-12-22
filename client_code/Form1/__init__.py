@@ -5,7 +5,8 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.users
-import docx
+from docx import Document
+from docx.shared import Inches
 import datetime
 
 
@@ -58,21 +59,21 @@ class Form1(Form1Template):
 
   def saveReport_click(self, **event_args):
     """This method is called when the button is clicked"""
-    doc = docx.Document()
+    doc = Document()
     doc.add_heading('Raport analiză {self.file.name}', 0)
     doc.add_paragraph('Configurație:')
     doc.add_paragraph('Utilizator:{self.utilizator}', style='List Number')
     doc.add_paragraph('Data:{datetime.now()}', style='List Number')
     doc.add_paragraph('Model:{self.lblModelIndex.text}', style='List Number')
 
-    doc.add_picture(anvil.media.TempFile(self.file), width=docx.shared.Inches(3))
+    doc.add_picture(anvil.media.TempFile(self.file), width=Inches(3))
     doc.add_paragraph('Figura 1: Imaginea originală')
     item_list = [{'vname':name, 'vvalue':eval(self.result)[name]} for name in keysList]
     for item in item_list:
       doc.add_paragraph(f"{item['vname']}: {item['vvalue']}', style='List Number'")
       if item['vvalue'] > 0.5:
         res = anvil.server.call('getHeatmap', file=self.file, model=item['vname'], patologie=item['vname'])
-        doc.add_picture(anvil.media.TempFile(res), width=docx.shared.Inches(3))
+        doc.add_picture(anvil.media.TempFile(res), width=Inches(3))
     doc.save(f'{self.utilizator}_{self.lblModelIndex.text}_{self.file.name}.docx')
     
       
@@ -83,7 +84,7 @@ class Form1(Form1Template):
     """This method is called when the button is clicked"""
     if self.file is not None:
       f = self.file
-      res = anvil.server.call('getHeatmap', f, pat)
+      #res = anvil.server.call('getHeatmap', file=f, modelname=self.lblModelIndex.text, patologie=pat)
       
     else:
       alert('Upload image!')
