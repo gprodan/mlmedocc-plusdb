@@ -58,7 +58,8 @@ class Form1(Form1Template):
 
   def saveReport_click(self, **event_args):
     """This method is called when the button is clicked"""
-    doc = anvil.server.call('save_report', file=self.file, utilizator=self.utilizator.text, modelname=self.lblModelIndex.text, result=self.result)
+    doc = anvil.server.call('save_report', file=self.file, utilizator=self.utilizator.text, 
+                            modelname=self.lblModelIndex.text, result=self.result)
     anvil.media.download(doc)
       
 
