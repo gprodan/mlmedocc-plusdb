@@ -91,7 +91,7 @@ def save_report(file, utilizator, modelname, result):
     keysList = list(eval(result).keys())
     item_list = [{'vname':name, 'vvalue':eval(result)[name]} for name in keysList]
     for item in item_list:
-      doc.add_paragraph(f"{item['vname']}: {item['vvalue']}'", style='List Number')
+      doc.add_paragraph(f"{item['vname']}: {item['vvalue']}", style='List Number')
       if item['vvalue'] > 0.5:
         print(f"HM Model:{item['vname']} ({item['vvalue']})")
         if getHeatmap(file=file, modelname=modelname, patologie=item['vname']):
